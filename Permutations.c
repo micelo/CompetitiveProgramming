@@ -2,18 +2,18 @@
 using namespace std;
 typedef long long ll;
 ll dp[13][99];
- void SECOND_WORLD_WAR(){
+ void init(){
   for(int i=0;i<13;i++)
     for(int j=0;j<99;j++)
        dp[i][j]=-1;
   }
- ll MOTHER_RUSSIA(ll n,ll k){
+ ll solve2(ll n,ll k){
   if(n == 0)return 0;
   if(k == 0)return 1;
   if(dp[n][k] != -1)return dp[n][k]; 
   ll ADRIAN = 0;
   for(ll i=0;i<=k&&i<n;i++)
-      ADRIAN += MOTHER_RUSSIA(n-1,k-i);
+      ADRIAN += solve2(n-1,k-i);
   return (dp[n][k]=ADRIAN);
  }
  
@@ -21,8 +21,8 @@ ll dp[13][99];
  ll n,k,t;
  cin >> t;
  while(t--){
- SECOND_WORLD_WAR();
+ init();
  cin >> n >> k;
- cout<<MOTHER_RUSSIA(n,k)<<'\n';
+ cout<<solve2(n,k)<<'\n';
   }
  }
